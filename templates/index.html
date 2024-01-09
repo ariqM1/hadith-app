@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <p><strong>HADITH OF THE DAY</strong></p>
+        <p><strong>Text:</strong> {{ data1['text'] }}</p>
+        <p><strong>Grades:</strong></p>
+        <ul>
+            {% for grade in data1['grades'] %}
+            <li>{{ grade['name'] }}: {{ grade['grade'] }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <p><strong>QURAN VERSE OF THE DAY</strong></p>
+        <p><strong>Surah: </strong>{{data2['data']['surah']['number'] }} ({{ data2['data']['surah']['englishName']}}): {{data2['data']['numberInSurah']}} </p>
+        <p><strong>Verse: </strong> {{ data2['data']['text'] }} </p>
+
+    </div>
+</div>
+
+{% endblock content %}
