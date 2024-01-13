@@ -2,8 +2,13 @@ from flask import Flask, render_template
 import requests
 import json
 import random
+from selenium import webdriver
+import chromedriver_binary  
+from googleapiclient.discovery import build
 
 app = Flask(__name__)
+
+API_KEY = 'YOUR_API_KEY'
 
 @app.route("/", methods=["GET"])
 def index():
@@ -18,6 +23,9 @@ def index():
     quran_arabic_data = requests.get(f'http://api.alquran.cloud/v1/ayah/{verse}')
     quran_arabic_verse = json.loads(quran_arabic_data.content)
     
+    driver = webdriver.Chrome()
+    driver.get("http://www.python.org")
 
     print(quran_english_verse['data']['surah']['number'], quran_english_verse['data']['numberInSurah'])
+    
     return render_template('index.html',  data1=hadith, data2=quran_english_verse, data3 = quran_arabic_verse)
