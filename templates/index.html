@@ -19,6 +19,18 @@
         <p><strong>Verse: </strong> {{data3['data']['text']}} </p>
         <p><strong>Translation: </strong> {{ data2['data']['text'] }} </p>
     </div>
+    <div>
+        <h1>YouTube Search Results</h1>
+        <ul>
+            {% for video in videos %}
+                <li>
+                    <h2>{{ video['snippet']['title'] }}</h2>
+                    <p>{{ video['snippet']['description'] }}</p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{ video['id']['videoId'] }}" frameborder="0" allowfullscreen></iframe>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 
 {% endblock content %}

@@ -8,7 +8,7 @@ from googleapiclient.discovery import build
 
 app = Flask(__name__)
 
-API_KEY = 'YOUR_API_KEY'
+API_KEY = 'AIzaSyDzPIZ51p58VDCVvMon2NtnfgkRFn_zZVM'
 
 @app.route("/", methods=["GET"])
 def index():
@@ -23,9 +23,18 @@ def index():
     quran_arabic_data = requests.get(f'http://api.alquran.cloud/v1/ayah/{verse}')
     quran_arabic_verse = json.loads(quran_arabic_data.content)
     
-    driver = webdriver.Chrome()
-    driver.get("http://www.python.org")
+    query = 'quran surah ' + str(quran_english_verse['data']['surah']['number']) + ' ayat ' + str(quran_english_verse['data']['numberInSurah'])
+    print(query)
+    youtube = build('youtube', 'v3', developerKey=API_KEY)
+    search_response = youtube.search().list(
+        q=query,
+        type='video',
+        part='snippet',
+        maxResults=3    
+    ).execute()
 
+    video = search_response['items']
+    
     print(quran_english_verse['data']['surah']['number'], quran_english_verse['data']['numberInSurah'])
     
-    return render_template('index.html',  data1=hadith, data2=quran_english_verse, data3 = quran_arabic_verse)
+    return render_template('index.html',  data1=hadith, data2=quran_english_verse, data3 = quran_arabic_verse, videos=video)
