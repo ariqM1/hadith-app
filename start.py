@@ -26,7 +26,7 @@ def index():
     
     query = 'quran surah ' + str(quran_english_verse['data']['surah']['number']) + ' ayat ' + str(quran_english_verse['data']['numberInSurah'])
     print(query)
-    youtube = build('youtube', 'v3', developerKey=config.API_KEY)
+    youtube = build('youtube', 'v3', developerKey=API_KEY)
     search_response = youtube.search().list(
         q=query,
         type='video',
