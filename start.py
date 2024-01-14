@@ -6,9 +6,11 @@ from selenium import webdriver
 import chromedriver_binary  
 from googleapiclient.discovery import build
 import config
+import os
 
 app = Flask(__name__)
 
+API_KEY = os.environ.get('API_KEY')
 
 @app.route("/", methods=["GET"])
 def index():
