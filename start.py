@@ -5,7 +5,6 @@ import random
 from selenium import webdriver
 import chromedriver_binary  
 from googleapiclient.discovery import build
-import config
 import os
 
 app = Flask(__name__)
