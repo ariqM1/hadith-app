@@ -1,0 +1,21 @@
+name: Your Workflow Name
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  your-job-name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use the API Key
+        run: |
+          # Access the secret using the context
+          API_KEY=${{ secrets.API_KEY }}
+          # Now you can use $API_KEY in your code
+          echo "API_KEY=$API_KEY"
