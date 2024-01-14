@@ -8,7 +8,6 @@ from googleapiclient.discovery import build
 
 app = Flask(__name__)
 
-API_KEY = 'AIzaSyDzPIZ51p58VDCVvMon2NtnfgkRFn_zZVM'
 
 @app.route("/", methods=["GET"])
 def index():
